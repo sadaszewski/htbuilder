@@ -53,6 +53,8 @@ from .funcs import func
 from .units import unit
 from .utils import classes, fonts, rule, styles
 
+from html import escape
+
 EMPTY_ELEMENTS = set(
     [
         # https://developer.mozilla.org/en-US/docs/Glossary/Empty_element
@@ -143,13 +145,13 @@ class HtmlElement:
         return self(children)
 
     def __str__(self) -> str:
-        children = "".join([str(c) for c in self._children])
+        children = "".join([escape(c) if isinstance(c, str) else str(c) for c in self._children])
 
         if self._tag is None:
             return children
 
         tag = _clean_name(self._tag)
-        attrs = " ".join([f'{_clean_name(k)}="{v}"' for k, v in self._attrs.items()])
+        attrs = " ".join([f'{_clean_name(k)}="{escape(v)}"' for k, v in self._attrs.items()])
 
         if self._cannot_have_children:
             if self._attrs:
