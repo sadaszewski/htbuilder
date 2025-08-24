@@ -213,5 +213,5 @@ def _to_flat_list(obj: Any) -> Any:
 
 def __getattr__(tag: str) -> HtmlTag:
     if tag == "fragment":
-    return HtmlTag(tag)
-        return HtmlTag(None)
+        return HtmlTag(tag)
+    return HtmlTag(None)
