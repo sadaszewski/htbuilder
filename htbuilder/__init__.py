@@ -211,5 +211,12 @@ def _to_flat_list(obj: Any) -> Any:
     return out
 
 
+class dont_escape:
+    def __init__(self, s: str):
+        self.s = s
+    def __str__(self):
+        return self.s
+
+
 def __getattr__(tag: str) -> HtmlTag:
     return HtmlTag(tag)
