@@ -151,7 +151,7 @@ class HtmlElement:
             return children
 
         tag = _clean_name(self._tag)
-        attrs = " ".join([f'{_clean_name(k)}="{escape(v)}"' for k, v in self._attrs.items()])
+        attrs = " ".join([f'{_clean_name(k)}="{escape(str(v))}"' for k, v in self._attrs.items()])
 
         if self._cannot_have_children:
             if self._attrs:
